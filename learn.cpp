@@ -6,8 +6,7 @@ int main()
 	int car_amount;
 	cin>>S>>M>>L>>car_amount;
 	int car_weights[car_amount];
-	int car_park[S+M+L];
-	int Slot[S], Mlot[M], Llot[L];
+	int s=0,m=0,l=0;
 	for (int i=0;i<car_amount;i++)
 	{
 		cin>>car_weights[i];
@@ -16,37 +15,38 @@ int main()
 	{
 		if (1<=car_weights[i]<=199)
 		{
-			for (int j=0;j<S;j++)
+			if (s<S)
 			{
-				Slot[j] = car_weights[i];
+				s++;
+			}
+			else if (m<M)
+			{
+				m++;
+			}
+			else if (l<L)
+			{
+				l++;
 			}
 		}
 		else if (200<=car_weights[i]<=499)
 		{
-			for (int j=0;j<M;j++)
+			if (m<M)
 			{
-				Mlot[j] = car_weights[i];
+				m++;
+			}
+			else if (l<L)
+			{
+				l++;
 			}
 		}
-		else if (car_weights[i]>=500)
+		else
 		{
-			for (int j=0;j<L;j++)
+			if (l<L)
 			{
-				Llot[j] = car_weights[i];
+				l++;
 			}
 		}
 	}
-	for (int j=0;j<S;j++)
-	{
-		cout<<Slot[j]<<" ";
-	}
-	for (int j=0;j<M;j++)
-	{
-		cout<<Mlot[j]<<" ";
-	}
-	for (int j=0;j<L;j++)
-	{
-		cout<<Llot[j]<<" ";
-	}
+	cout<<s<<m<<l;
 	return 0;
 }
