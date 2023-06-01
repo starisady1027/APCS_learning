@@ -3,10 +3,8 @@ using namespace std;
 int main()
 {
 	string a;
-	string b;
 	int n=0;
-	int top=0;
-	bool clear=false;
+	int ans=0;
 	int x;
 	cin>>x;
 	for (int i=0;i<x;i++)
@@ -16,30 +14,20 @@ int main()
 		{
 			if (a[j]=='(')
 			{
-				b[top]='(';
-				top++;
-			}
-			if (a[j]==')' and top!=0 and b[top]=='(')
-			{
-				top--;
 				n++;
 			}
-		}
-		for (int i=0;i<a.length();i++)
-		{
-			if (b[i]=='(' or b[i]==')')
+			else if (a[j]==')' and n!=0)
 			{
-				clear=true;	
+				n--;
+				ans++;
 			}
 		}
-		if (clear==true)
+		if (n!=0)
 		{
-			n=0;
+			ans=0;
 		}
-		cout<<n;
-		clear=false;
-		b="";
-		top=0;
+		cout<<ans<<endl;
+		ans=0;
 		n=0;
 	}
 	return 0;
