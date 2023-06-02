@@ -16,8 +16,13 @@ int main()
 			{
 				n++;
 			}
-			else if (a[j]==')' and n!=0)
+			else if (a[j]==')')
 			{
+				if (n==0)
+				{
+					ans=0;
+					break;
+				}
 				n--;
 				ans++;
 			}
