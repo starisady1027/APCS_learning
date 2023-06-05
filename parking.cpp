@@ -13,7 +13,7 @@ int main()
 	}
 	for (int i=0;i<car_amount;i++)
 	{
-		if (1<=car_weights[i]<=199)
+		if (car_weights[i]<200)
 		{
 			if (s<S)
 			{
@@ -28,7 +28,7 @@ int main()
 				l++;
 			}
 		}
-		else if (200<=car_weights[i]<=499)
+		else if (car_weights[i]<500)
 		{
 			if (m<M)
 			{
@@ -47,6 +47,6 @@ int main()
 			}
 		}
 	}
-	cout<<s<<m<<l;
+	cout<<s+m+l;
 	return 0;
 }
