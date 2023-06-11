@@ -1,44 +1,59 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int operate(vector<int>ans, char o)
-{
-	sum=0;
-	for (int i=0;i<ans.size();i++)
-	{
-		sum+=ans[i];
-	}
-}
-
-
 int main()
 {
 	//f698
-	char a;
-	int n=0;
-	vector<int> ans;
-	for (int i=0;i<4;i++)
+	string a;
+	vector<unsigned int> num;
+	int top=-1;
+	int c=0;
+	getline(cin, a);
+	for (int i=0;i<a.length();i++)
 	{
-		cin>>a;
-		if (a==int)
+		if ((int)a[i]>=48 and (int)a[i]<=57)
 		{
-			ans.push_back(a);
+			num.push_back((int)a[i] - 48);
+			top++;
 		}
-		else if (a=='+')
+		if (a[i]=='+')
 		{
-			ans.pop_back();
-			ans.pop_back();
+			c = num[top] + num[top-1];
+			num.pop_back();
+			num.pop_back();
+			num.push_back(c);
+			top--;
+			c=0;
 		}
-		else if (a=='-')
+		if (a[i]=='-')
 		{
+			c = num[top] - num[top-1];
+			num.pop_back();
+			num.pop_back();
+			num.push_back(c);
+			top--;
+			c=0;
 		}
-		else if (a=='*')
+		if (a[i]=='*')
 		{
+			c = num[top] * num[top-1];
+			num.pop_back();
+			num.pop_back();
+			num.push_back(c);
+			top--;
+			c=0;
 		}
-		else if (a=='/')
+		if (a[i]=='/')
 		{
+			c = num[top] / num[top-1];
+			num.pop_back();
+			num.pop_back();
+			num.push_back(c);
+			top--;
+			c=0;
 		}
 	}
+	cout<<num[0];
 	return 0;
 }
 
