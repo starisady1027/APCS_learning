@@ -5,36 +5,41 @@ int main()
 {
 	//f698
 	string a;
+	getline(cin,a);
 	stack <int> ans;
-	cin>>a;
 	for (int i=0;i<a.length();i++)
 	{
-		int first = ans.top();
-		ans.pop();
-		int second = ans.top();
-		ans.pop();
-		if (a[i]=='+')
+		if (a[i]=='+' or a[i]=='-' or a[i]=='*' or a[i]=='/')
 		{
-			ans.push(first+second);
+			if (ans.size()>1)
+			{
+				int fst = ans.top();
+				ans.pop();
+				int sec = ans.top();
+				ans.pop();
+				switch (a[i])
+				{
+					case '+':
+						ans.push(fst+sec);
+						break;
+					case '-':
+						ans.push(fst-sec);
+						break;
+					case '*':
+						ans.push(fst*sec);
+						break;
+					case '/':
+						if (sec!=0) ans.push(fst/sec);
+						break;
+				}	
+			}
 		}
-		else if (a[i]=='-')
-		{
-			ans.push(first-second);
-		}
-		else if (a[i]=='*')
-		{
-			ans.push(first*second);
-		}
-		else if (a[i]=='/')
-		{
-			ans.push(first/second);
-		}
-		else
+		else if ((int)a[i]>=48 and (int)a[i]<=57)
 		{
 			ans.push((int)a[i]-48);
 		}
 	}
-	cout<<ans.top()<<endl;
+	cout<<ans.top();
 	
 	return 0;
 }
